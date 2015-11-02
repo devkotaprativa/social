@@ -9,6 +9,7 @@ module ApplicationHelper
 
   def resource
     @resource ||= User.new
+    
   end
 
   def devise_mapping
