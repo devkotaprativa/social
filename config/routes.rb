@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'social/index'
+
+  get 'social/show'
+
+  get 'social/new'
+
+  get 'social/edit'
+
+  get 'social/update'
+
+  get 'social/destroy'
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
