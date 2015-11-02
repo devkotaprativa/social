@@ -1,0 +1,12 @@
+<div class = "container-fluid">
+  <div class = "col-sm-8">
+    <%=image_tag("image3.jpg", :class=> "img-thumnail", :width=> "838px", :height=>"500px")%>
+  </div>
+  <div class = "col-sm-4">
+   <%= render 'devise/sessions/new'%>
+    <div class = "signup-button">
+      <%= link_to "SIGN-UP",new_user_registration_path, :class=>"btn btn-primary btn-lg" %>
+    </div>
+ </div>
+  
+</div>
