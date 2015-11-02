@@ -16,4 +16,7 @@ class SocialsController < ApplicationController
 
   def destroy
   end
+
+  def homepage
+  end
 end
