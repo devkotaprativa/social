@@ -1,4 +1,4 @@
-class SocialController < ApplicationController
+class SocialsController < ApplicationController
   def index
   end
 
