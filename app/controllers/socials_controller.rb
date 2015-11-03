@@ -41,6 +41,11 @@ class SocialsController < ApplicationController
     redirect_to "/twitter_profile"
   end
 
+  def twitter_profile
+    @user_timeline = get_client.user_timeline
+    @home_timeline = get_client.home_timeline
+  end
+
 private
 
   def get_client
