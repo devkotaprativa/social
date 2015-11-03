@@ -56,7 +56,19 @@ private
 
     Twitter::Client.new(
       :oauth_token => TwitterOauthSetting.find_by_user_id(current_user.id).atoken,
-      :oauth_token_secret => TwitterOauthSetting.find_by_user_id(current_user.id).asecret
-    )
+      :oauth_token_secret => TwitterOauthSetting.find_by_user_id(current_user.id).asecret)
+    
+  end
+
+  def update_user_account
+    user_twitter_profile = get_client.user
+    current_user.update_attributes({
+      name: user_twitter_profile.name
+      screen_name: user_twitter_profile.screen_name
+      url: user_twitter_profile.url
+      profile_image_url: user_twitter_profile.profile_image_url
+      location: user_twitter_profile.location
+      description: user_twitter_profile.description
+     })
   end
 end
