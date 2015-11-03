@@ -41,4 +41,17 @@ class SocialsController < ApplicationController
     redirect_to "/twitter_profile"
   end
 
+private
+
+  def get_client
+    Twitter.configure do |config|
+      config.consumer_key = "ySySPXIPjoylhnqMkIs7OeMzQ"
+      config.consumer_secret = "MLMWWVnQjVGioc0pB70iGI3tKSTb7H6UGbiXxglLPo8NmleyAc"
+    end
+
+    Twitter::Client.new(
+      :oauth_token => TwitterOauthSetting.find_by_user_id(current_user.id).atoken,
+      :oauth_token_secret => TwitterOauthSetting.find_by_user_id(current_user.id).asecret
+    )
+  end
 end
