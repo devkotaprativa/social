@@ -1,6 +1,8 @@
 class SocialsController < ApplicationController
   before_filter :authenticate_user!
   def index
+    unless TwitterOauthSetting.find_by_user_id(current_user.id).nil?
+      redirect_to "/twitter_profile"
   end
 
   def show
@@ -20,4 +22,23 @@ class SocialsController < ApplicationController
 
   def homepage
   end
+
+  def generate_oauth
+    oauth_callback = "http://#{request.host}:#{request.port}/oauth_account"
+    @consumer = OAuth::Consumer.new("ySySPXIPjoylhnqMkIs7OeMzQ","MLMWWVnQjVGioc0pB70iGI3tKSTb7H6UGbiXxglLPo8NmleyAc", :site => "https://api.twitter.com")
+    @request_token = @consumer.get_request_token(:oauth_callback =>oauth_callback)
+    session[:request_token] = @request_token
+    redirect_to @request_token.authorize_url(:oauth_callback => oauth_callback)
+  end
+
+  def oauth_account
+    if TwitterOauthSetting.find_by_user_id(current_user.id).nil?
+      @request_token = session[:request_token]
+      @access_token = @request_token.get_access_token(:oauth_verifier => params["oauth_verifier"])
+      TwitterOauthSetting.create(atoken: @access_token.token, asecret: @access_token.secret, user_id: current_user.id)
+      update_user_account()
+    end
+    redirect_to "/twitter_profile"
+  end
+
 end
