@@ -27,6 +27,9 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails'
 gem 'oauth'
 gem 'twitter'
+gem 'twitter-text'
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
