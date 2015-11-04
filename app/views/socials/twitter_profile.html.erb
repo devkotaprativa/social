@@ -3,12 +3,13 @@
 		<div class = "col-sm-6">
 		 <div class="span4">
 		   <div class="thumbnail">
-		     <%= render 'tweets/form'%>
-		      <img src="<%= current_user.profile_image_url %>" style="float: left;margin: 5px;">
-		      <h3><%= current_user.name %></h3>
-		      <h4><%= current_user.location %></h4>
+		      <img src="<%= @client.user.profile_image_url %>" style="float: left;margin: 5px;">
+		      
+		      <h3><%= @client.user.screen_name %></h3>
+		      <h4><%= @client.user.location %></h4>
 		      <br>
-		      <p><%= current_user.description %></p>
+		      <p><%= @client.user.description %></p>
+		      <%= render 'tweets/form'%>
 		    </div>
 		  </div>
 
