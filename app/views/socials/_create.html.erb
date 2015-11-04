@@ -1,0 +1,6 @@
+ <p>
+  <%= form_for :@post, url: socials_path, method: :post do |f| %>
+    <%= f.text_field :message %>
+    <%= f.submit "Send Tweet" %>
+  <% end %>
+</p>

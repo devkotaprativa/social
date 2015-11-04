@@ -1,7 +1,7 @@
-class TwitterOauthSetting < ActiveRecord::Base
+class Tweet < ActiveRecord::Base
 	belongs_to :user
 
-	 def tweet(tweet)
+	def tweet(tweet)
     client = Twitter::REST::Client.new do |config|
       config.consumer_key = ENV["CONSUMER_KEY"]
       config.consumer_secret = ENV["CONSUMER_SECRET"]
@@ -11,4 +11,5 @@ class TwitterOauthSetting < ActiveRecord::Base
     
     client.update(tweet)
   end
+
 end

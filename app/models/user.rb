@@ -4,5 +4,17 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
- # attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :screen_name, :url, :profile_image_url, :location, :description
+ has_many :tweets
+ has_one :twitter_oauth_setting
+
+ def tweet(tweet)
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key = ENV["CONSUMER_KEY"]
+      config.consumer_secret = ENV["CONSUMER_SECRET"]
+      config.access_token = ENV["ACCESS_TOKEN"]
+      config.access_token_secret = ENV["ACCESS_TOKEN_SECRET"]
+    end
+    
+    client.update(tweet)
+  end
 end

@@ -7,6 +7,10 @@ class SocialsController < ApplicationController
     end
   end
 
+  def create
+     
+  end
+
   def show
   end
 
@@ -51,6 +55,7 @@ class SocialsController < ApplicationController
   def twitter_profile
     @user_timeline = @client.user_timeline
     @home_timeline = @client.home_timeline
+
   end
 
   private
@@ -77,4 +82,6 @@ class SocialsController < ApplicationController
       access_token = OAuth::AccessToken.from_hash(@consumer, token_hash )
       return access_token
   end
+
+  
 end
