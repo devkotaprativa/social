@@ -21,7 +21,7 @@
 			  	  </tr>
 			  	  <% @user_timeline.each do |t| %>
 				  	   <tr>
-				  	     <th><%= t.text %></th>
+				  	     <th><%= twitter_text(t.text) %></th>
 				       </tr>
 			  	  <% end %>
 					</table>
@@ -41,7 +41,7 @@
 				   <tr>
 				     <th><%= t.user.name %></th>
 				     <th><img src="<%= t.user.profile_image_url %>" /></th>
-				     <th><%= t.text %></th>
+				     <th><%= twitter_text(t.text) %></th>
 			     </tr>
 				  <% end %>
 				</table>
