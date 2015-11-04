@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103045337) do
+ActiveRecord::Schema.define(version: 20151103051659) do
+
+  create_table "twitter_oauth_settings", force: :cascade do |t|
+    t.string   "atoken",     limit: 255
+    t.string   "asecret",    limit: 255
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
