@@ -42,9 +42,9 @@ class SocialsController < ApplicationController
       @request_token = session[:request_token]
       prepare_access_token(params[:oauth_token],params[:oauth_token_secret])
       @consumer = OAuth::Consumer.new(params[:oauth_token],params[:oauth_token_secret], :site => "https://api.twitter.com")
-      Rails.logger.info"+++++++++++++++++++++++"
-      Rails.logger.info("#{@request_token.inspect}")
-      Rails.logger.info"+++++++++++++++++++++++"
+      # Rails.logger.info"+++++++++++++++++++++++"
+      # Rails.logger.info("#{@request_token.inspect}")
+      # Rails.logger.info"+++++++++++++++++++++++"
       @access_token = prepare_access_token(params[:oauth_token],params[:oauth_token_secret])
       TwitterOauthSetting.create(atoken: @access_token.token, asecret: @access_token.secret, user_id: current_user.id)
       
@@ -55,12 +55,19 @@ class SocialsController < ApplicationController
   def twitter_profile
     @user_timeline = @client.user_timeline
     @home_timeline = @client.home_timeline
+  end
 
+  def retweet
+    
+    id = params["format"]
+    @client.retweet!(id)
+    flash[:notice]= "Successfully retweeted the tweet"
+     redirect_to "/twitter_profile"
   end
 
   private
   def get_client
-    
+
     @client ||= Twitter::REST::Client.new do |config|
       config.consumer_key = ENV["CONSUMER_KEY"]
       config.consumer_secret = ENV["CONSUMER_SECRET"]

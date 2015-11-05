@@ -1,8 +1,10 @@
 class TweetsController < ApplicationController
   def create
-  	current_user.tweet(twitter_params[:message])
-  	flash[:notice] = "Successfully Tweeted"
-  	redirect_to twitter_profile_path
+  	if current_user.tweet(twitter_params[:message])
+  		flash[:notice] = "Successfully Tweeted"
+  		redirect_to twitter_profile_path
+  	else
+  		flash[:notice] = "Sorry your tweet cannot be posted"
   end
 
   def new

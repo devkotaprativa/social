@@ -18,7 +18,7 @@
 					<h1>User Timeline</h1>
 			  	<table class="table table-striped">
 			  	  <tr>
-			  	    <th>Text</th>
+			  	    <th>YOUR TWEETS</th>
 			  	  </tr>
 			  	  <% @user_timeline.each do |t| %>
 				  	   <tr>
@@ -43,6 +43,7 @@
 				     <th><%= t.user.name %></th>
 				     <th><img src="<%= t.user.profile_image_url %>" /></th>
 				     <th><%= twitter_text(t.text) %></th>
+				     <th><%= link_to "retweet",socials_retweet_path(t.id), :class=> "btn btn-primary", method: :post %></th>
 			     </tr>
 				  <% end %>
 				</table>
