@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/oauth_account' => "socials#oauth_account"
   get '/twitter_oauth_url' => 'socials#generate_twitter_oauth_url'
   post 'socials/retweet'
+  post 'socials/fav'
 
   resource :tweets
 

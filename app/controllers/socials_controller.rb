@@ -60,9 +60,22 @@ class SocialsController < ApplicationController
   def retweet
     
     id = params["format"]
-    @client.retweet!(id)
-    flash[:notice]= "Successfully retweeted the tweet"
-     redirect_to "/twitter_profile"
+    if @client.retweet!(id)
+      flash[:notice]= "Successfully retweeted the tweet"
+      redirect_to "/twitter_profile"
+    else
+      flash[:alert]= "Oops something went wrong! your request could not be processed."
+    end
+  end
+
+  def fav
+    id = params["format"]
+    if @client.favroite!(id)
+      flash[:notice]= "Successfully favroited the tweet"
+      redirect_to "/twitter_profile"
+    else
+      flash[:alert]= "Oops something went wrong! your request could not be processed."
+    end
   end
 
   private
