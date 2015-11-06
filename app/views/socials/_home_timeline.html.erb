@@ -1,0 +1,28 @@
+<% @home_timeline.each do |t| %>
+ <tr>
+   <th><%= t.user.name %></th>
+   <th><img src="<%= t.user.profile_image_url %>" /></th>
+   <th><%= twitter_text(t.text) %></th>
+   <th><%= link_to "retweet",socials_retweet_path(t.id), :class=> "btn btn-primary", method: :post %></th>
+   <th><%= link_to "favroite",socials_fav_path(t.id), :class=> "btn btn-primary", method: :post %></th>
+ </tr>
+ <tr>
+ 	<th></th>
+ 	<th></th>
+ 	<th><%= form_tag(socials_reply_path(t.id), :class => 'form', method: "post") do %>
+		  <p>        
+		    <%= text_field_tag(:msg)%>
+		    <%= submit_tag("reply", class: "btn btn-primary", :placeholder=> 'reply') %>
+		   </p>
+		  <% end %>
+		 </th>
+ </tr>
+<% end %>
+
+
+
+
+
+
+
+

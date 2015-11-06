@@ -32,6 +32,7 @@
  }
  .homepage{
   background-image: url("social.jpg");
+  background-repeat: no-repeat;
   background-size: 1288px 600px;
  }
  .text{

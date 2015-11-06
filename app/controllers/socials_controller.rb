@@ -78,6 +78,11 @@ class SocialsController < ApplicationController
     end
   end
 
+  def reply
+    id = params["format"]
+    @client.update(params[:msg], in_reply_to_tweet_id: id)
+  end
+
   private
   def get_client
 
@@ -88,9 +93,9 @@ class SocialsController < ApplicationController
       config.access_token_secret = ENV["ACCESS_TOKEN_SECRET"]
     end
 
-     Twitter::Client.new(
-      :oauth_token => TwitterOauthSetting.find_by_user_id(current_user).atoken,
-      :oauth_token_secret => TwitterOauthSetting.find_by_user_id(current_user).asecret)
+     # Twitter::Client.new(
+     #  :oauth_token => TwitterOauthSetting.find_by_user_id(current_user).atoken,
+     #  :oauth_token_secret => TwitterOauthSetting.find_by_user_id(current_user).asecret)
       
   end
 

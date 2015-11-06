@@ -5,7 +5,9 @@ class TweetsController < ApplicationController
   		redirect_to twitter_profile_path
   	else
   		flash[:notice] = "Sorry your tweet cannot be posted"
+  	end
   end
+
 
   def new
   	@post = Tweet.new
